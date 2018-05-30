@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+
+printf STDERR "Enter a Roland-style bank/patch number, eg 'B55', 'I38', \
+or a Yamaha-style internal/cartridge patch number, eg 'I3', 'C16', \
+to get the MIDI program change number.  Press Return alone when done.\n";
+
+while (<STDIN>) {
+    last if /^$/;
+    if ( /^([abic])([0-9])([0-9])/i ) {
+        # roland style: bank A/B or Internal/Cart
+        ($bank,$n1,$n2) = ($1,$2,$3);
+        printf "%d\n", (($n1-1)*8 + ($n2-1) + 64*($bank =~ /[bc]/));
+    } elsif ( /^y([ic])(\d+)/ ) {
+        # yamaha dx7
+        ($bank,$patch) = ($1,$2);
+        printf "%d\n", ($patch - 1) + 32*($bank =~ /c/);
+    }
+}
