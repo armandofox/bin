@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# make a gist for the code. The other accessible choices for
+#  "style" are stata (light bgnd) or solarized-dark (black bgnd).
+pygmentize -f rtf -O style=xcode,fontface=Monaco $1 | pbcopy
+gist --no-private --shorten --raw --filename=$(basename $1) $1
+
+

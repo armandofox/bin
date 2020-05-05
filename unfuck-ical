@@ -1,4 +1,0 @@
-osascript -e 'tell application "Calendar" to quit'
-launchctl unload -w /System/Library/LaunchAgents/com.apple.CalendarAgent.plist
-launchctl load -w /System/Library/LaunchAgents/com.apple.CalendarAgent.plist
-open -a Calendar
